@@ -1,0 +1,15 @@
+# General stuff
+*.DS_Store
+.DS_Store
+.idea/
+.vscode/
+Thumbs.db
+
+#Main project directory
+src/
+
+#DB backups
+*.sql
+
+#DB files
+mysql/*
