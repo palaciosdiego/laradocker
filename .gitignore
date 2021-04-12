@@ -13,3 +13,5 @@ src/
 
 #DB files
 mysql/*
+
+/docker-compose.yml

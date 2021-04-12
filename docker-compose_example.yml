@@ -8,9 +8,9 @@ services:
     image: mysql/mysql-server:8.0.23
     container_name: nginx
     ports:
-      - "81:80"
+      - "80:80"
     volumes:      
-      - /Users/Aerobit/Projects/yuhuadmin/:/var/www/html
+      - /Users/MySelf/Projects/projectName/:/var/www/html
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - php
@@ -25,11 +25,11 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - "4306:3306"
+      - "3306:3306"
     volumes:
       - ./mysql:/var/lib/mysql
     environment:
-      MYSQL_DATABASE: yuhuadmin
+      MYSQL_DATABASE: mydb_name
       MYSQL_USER: homestead
       MYSQL_PASSWORD: secret
       MYSQL_ROOT_PASSWORD: secret
@@ -45,9 +45,9 @@ services:
       dockerfile: Dockerfile
     container_name: php
     volumes:      
-      - /Users/Aerobit/Projects/yuhuadmin/:/var/www/html      
+      - /Users/MySelf/Projects/projectName/:/var/www/html
     ports:
-      - "9001:9000"
+      - "9000:9000"
     networks:
       - laravel
 
