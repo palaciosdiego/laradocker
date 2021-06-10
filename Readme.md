@@ -47,6 +47,9 @@ docker exec CONTAINER /usr/bin/mysqldump -u root --password=root -r DATABASE | S
 # Restore
 cat backup.sql | docker exec -i CONTAINER /usr/bin/mysql -u root --password=root DATABASE
 
+# util info
+COMPOSER_MEMORY_LIMIT=-1 composer <command>
+
 
 
 
