@@ -54,6 +54,10 @@ COMPOSER_MEMORY_LIMIT=-1 composer <command>
 #If you want to run composer with different php version
  php8,0 /usr/local/bin/composer 
 
+Display route:list readable
+ sail artisan r:l --compact
+ sail artisan route:list --columns=method,name,uri,action  
+
 
 
 
