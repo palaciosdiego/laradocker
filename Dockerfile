@@ -33,6 +33,10 @@ RUN composer --version
 RUN echo 'max_execution_time=240' >> /usr/local/etc/php/conf.d/php.ini \
     && echo 'memory_limit=4G' >> /usr/local/etc/php/conf.d/php.ini
 
+RUN docker-php-ext-configure pcntl --enable-pcntl \
+  && docker-php-ext-install \
+    pcntl
+
 # Add UID '1000' to www-data
 RUN apk add shadow && usermod -u 1000 www-data && groupmod -g 1000 www-data
 
