@@ -13,9 +13,12 @@ Or use mac_m1 branch
 
 # General config before use
 Put the path from your laravel project in the volumes section of services: nginx and php (2 places) docker-compose.yml 
-Example:
+
+Clone the laravel project inside this project
+
+Add the folder to volumes on nginx and php containers:
 volumes:
-  - /Users/MySelf/Projects/projectName/:/var/www/html
+  - ./project_name/:/var/www/html
 
 Nginx port
 If 80 is not free to use, change it for: 81
@@ -38,8 +41,34 @@ docker-compose up -d
 # Install dependencies
 docker-compose exec php composer install
 
+
+# Login into mysql container
+docker exec -it container_id_here /bin/sh  
+mysql -u root -p
+secret
+
+# Change auth type to root
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'secret'
+
+# Grant all privileges to homestead user
+GRANT ALL PRIVILEGES ON *.* TO 'homestead'@'%' WITH GRANT OPTION;
+exit
+
+# Log in as homestead
+mysql -u homestead -p
+secret
+
+# Change auth type
+ALTER USER 'homestead'@'%' IDENTIFIED WITH mysql_native_password BY 'secret';
+
 # To use migrate an php artisan
-docker-compose exec php php /var/www/html/artisan migrate --seed
+docker-compose exec php php artisan migrate --seed
+
+# Vibrant seeds
+docker-compose exec php php artisan db:seed --class="\Vibrant\Users\Seeders\DatabaseSeeder" 
+
+# Checkout
+http://localhost/backend/home
 
 # Backup
 docker exec CONTAINER /usr/bin/mysqldump -u root --password=root -r DATABASE | Set-Content backup.sql
