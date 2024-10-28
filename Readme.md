@@ -78,6 +78,9 @@ docker exec CONTAINER /usr/bin/mysqldump -u root --password=root DATABASE > back
 # Restore
 cat backup.sql | docker exec -i CONTAINER /usr/bin/mysql -u root --password=root DATABASE
 
+### Lando
+cat yuhuadmin-local.sql| docker exec -i yuhuadmin_database_1 /opt/bitnami/mysql/bin/mysql -u laravel --password=laravel yuhuadmin
+
 # Util info
 COMPOSER_MEMORY_LIMIT=-1 composer <command>
 #If you want to run composer with different php version
